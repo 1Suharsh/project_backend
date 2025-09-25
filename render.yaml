@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: render-backend
+    env: node
+    buildCommand: "npm install && npx prisma generate && npx prisma migrate deploy"
+    startCommand: "npm start"
+    envVars:
+      - key: DATABASE_URL
+        fromEnv: DATABASE_URL
+      - key: FRONTEND_ORIGIN
+        value: https://your-frontend.vercel.app
+databases:
+  - name: render-postgres
+    databaseName: postgresql_nwcp
+    user: postgresql_nwcp_user
